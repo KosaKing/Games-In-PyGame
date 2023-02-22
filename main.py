@@ -28,11 +28,13 @@ while True:
             exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if player_rec.collidepoint(pygame.mouse.get_pos()):
-                player_gravity = -20
+                if player_rec.bottom == 300:
+                    player_gravity = -20
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                player_gravity = -20
+                if player_rec.bottom == 300:
+                    player_gravity = -20
 
             
     screen.blit(sky_surface,(0,0))
@@ -47,18 +49,12 @@ while True:
 
     #player
     player_gravity += 1
-    screen.blit(player_surface,player_rec)
     player_rec.y += player_gravity
-
-    # keys = pygame.key.get_pressed()
-    # if keys[pygame.K_SPACE]:
-    #     print('spacja')
-
-    # if player_rec.colliderect(snail_rect): pygame.stop
+    if player_rec.bottom >= 300: player_rec.bottom=300
+    screen.blit(player_surface,player_rec)
     
-    # mouse_position = pygame.mouse.get_pos()
-    # if player_rec.collidepoint(mouse_position):
-    #     print(pygame.mouse.get_pressed())
-    
+
+
+
     pygame.display.update()
     clock.tick(60)
