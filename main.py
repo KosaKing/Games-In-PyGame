@@ -2,6 +2,13 @@ import pygame
 from sys import exit
 from random import randint
 
+class Player(pygame.sprite.Sprite):
+    def __init__(self) -> None:
+        super().__init__()
+        self.image = pygame.image.load('graphics/player/player_walk_1.png').convert_alpha()
+        self.rect = self.image.get_rect(midbottom = (200, 300))
+
+
 def display_score():
     current_time = int((pygame.time.get_ticks() - start_time)/1000)
     score_surface = test_font.render(f'{current_time}', False, 'Black')
